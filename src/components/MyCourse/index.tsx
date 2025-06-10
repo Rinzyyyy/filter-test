@@ -1,7 +1,10 @@
 import { filterCategories, filterOptionData } from "../../constant/filterData";
+import { useIsMobile } from "../../hooks/useIsMobile";
 import CustomSelector from "../CustomSelector";
 
 const MyCourse = () => {
+  const isMobile = useIsMobile();
+
   return (
     <article>
       {/* tab */}
@@ -29,7 +32,7 @@ const MyCourse = () => {
                     options={[{ label: "全部", value: "all" }, ...options]}
                     placeholder={`請選擇${name}`}
                     defaultOption={{ label: "全部", value: "all" }}
-                    isClickToFocus
+                    isClickToFocus={isMobile}
                     onChange={() => {}}
                   />
                 </div>

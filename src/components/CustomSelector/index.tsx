@@ -60,7 +60,7 @@ const CustomSelector = ({
           setIsOpenOption((pre) => {
             const dropdownElement = dropdownRef.current;
             if (dropdownElement && !pre && isClickToFocus) {
-              const yOffset = -120; // top menu height
+              const yOffset = -150; // top menu height
               const y =
                 dropdownElement.getBoundingClientRect().top +
                 window.pageYOffset +
