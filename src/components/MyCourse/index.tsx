@@ -15,7 +15,7 @@ const MyCourse = () => {
       </div>
 
       {/* course */}
-      <div className="relative w-full h-[70vh] border border-gray-300 overflow-scroll">
+      <div className="relative w-full h-[70vh] border border-gray-300">
         <div className="sticky top-0 bg-[#f8f8f8] shadow px-6 py-3 md:flex md:gap-2 ">
           {filterCategories.map((key) => {
             const { name, options } = filterOptionData[key];
@@ -29,6 +29,7 @@ const MyCourse = () => {
                     options={[{ label: "全部", value: "all" }, ...options]}
                     placeholder={`請選擇${name}`}
                     defaultOption={{ label: "全部", value: "all" }}
+                    isClickToFocus
                     onChange={() => {}}
                   />
                 </div>
@@ -37,7 +38,7 @@ const MyCourse = () => {
           })}
         </div>
 
-        <div className="grid grid-col-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 p-6">
+        <div className="h-[calc(100%-204px)] md:h-[calc(100%-84px)] overflow-scroll grid grid-col-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 p-6 ">
           {Array.from({ length: 10 }).map((_, index) => (
             <div
               key={`course_${index}`}

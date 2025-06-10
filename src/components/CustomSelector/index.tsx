@@ -5,6 +5,7 @@ type CustomSelectorProps = {
   defaultOption?: { value: string | number; label: string };
   options: { value: string | number; label: string }[];
   placeholder?: string;
+  isClickToFocus?: boolean;
   onChange: (
     selected: { value: number | string; label: string },
     e?: React.MouseEvent
@@ -18,6 +19,7 @@ const CustomSelector = ({
   placeholder,
   onChange,
   style,
+  isClickToFocus = false,
 }: CustomSelectorProps) => {
   const [isOpenOption, setIsOpenOption] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -54,7 +56,21 @@ const CustomSelector = ({
       <div
         ref={dropdownRef}
         className="relative flex items-center justify-between gap-5 border-1 border-gray-300  bg-slate-50 rounded-md h-[40px] px-2  cursor-pointer"
-        onClick={() => setIsOpenOption((pre) => !pre)}
+        onClick={() => {
+          setIsOpenOption((pre) => {
+            const dropdownElement = dropdownRef.current;
+            if (dropdownElement && !pre && isClickToFocus) {
+              const yOffset = -120; // top menu height
+              const y =
+                dropdownElement.getBoundingClientRect().top +
+                window.pageYOffset +
+                yOffset;
+
+              window.scrollTo({ top: y, behavior: "smooth" });
+            }
+            return !pre;
+          });
+        }}
         style={style}
       >
         {selected ? (
